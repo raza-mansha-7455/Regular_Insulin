@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Regular Insulin Information - Dark Theme Updated with Placeholders</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  /* Global Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0f172a; /* dark navy */
+    color: #e0e7ff; /* light lavender text */
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: #82c7ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+    color: #38bdf8;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #1e293b, #3b82f6, #2563eb);
+    color: #f0f9ff;
+    padding: 36px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 10px 32px rgb(30 41 59 / 0.7);
+    border-bottom: 1px solid #1e40af;
+  }
+  header img {
+    height: 48px;
+    width: auto;
+    user-select: none;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgb(59 130 246 / 0.7);
+    background: #1e40af;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    user-select: none;
+    line-height: 1.1;
+    color: #e0e7ff;
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  }
+
+  /* Sections */
+  section {
+    background: #1e293b;
+    border-radius: 14px;
+    padding: 40px 48px;
+    margin-top: 48px;
+    box-shadow: 0 6px 30px rgb(99 102 241 / 0.25);
+    transition: box-shadow 0.3s ease;
+    color: #cbd5e1;
+  }
+  section:hover {
+    box-shadow: 0 14px 48px rgb(96 165 250 / 0.45);
+  }
+  section h2 {
+    margin-top: 0;
+    margin-bottom: 28px;
+    font-weight: 800;
+    color: #93c5fd;
+    border-left: 6px solid #3b82f6;
+    padding-left: 16px;
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 8px #3b82f6aa;
+  }
+  section h3 {
+    margin-top: 36px;
+    margin-bottom: 18px;
+    font-weight: 600;
+    color: #60a5fa;
+    font-size: 1.3rem;
+  }
+  section p, section ul, section ol {
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 1.12rem;
+    color: #cbd5e1;
+  }
+
+  ul {
+    list-style: disc inside;
+  }
+  ul li, ol li {
+    margin-bottom: 12px;
+  }
+  ol {
+    list-style: decimal inside;
+  }
+  p strong {
+    color: #93c5fd;
+  }
+
+  /* Formula Block */
+  .formula {
+    background: #334155;
+    border-radius: 16px;
+    padding: 24px 28px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    font-size: 1.3rem;
+    overflow-x: auto;
+    user-select: text;
+    margin-top: 28px;
+    color: #bfdbfe;
+    box-shadow: inset 0 0 14px rgb(96 165 250 / 0.5);
+  }
+
+  /* Images container - multiple images with captions */
+  .image-gallery {
+    margin-top: 28px;
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .image-card {
+    background: #273449;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgb(59 130 246 / 0.5);
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+    padding: 24px 16px 32px;
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  .image-card:hover,
+  .image-card:focus-within {
+    transform: scale(1.04);
+    outline: none;
+    box-shadow: 0 16px 48px rgb(96 165 250 / 0.7);
+  }
+  .image-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgb(59 130 246 / 0.7);
+    margin-bottom: 16px;
+  }
+  .image-card figcaption {
+    color: #a5b4fc;
+    font-size: 1rem;
+    font-style: italic;
+    user-select: none;
+  }
+
+  /* Drug Interaction Legend */
+  .interaction-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 36px;
+    font-size: 1rem;
+    color: #cbd5e1;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .legend-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 2px solid transparent;
+  }
+  .no-interaction { background-color: #22c55e; border-color: #15803d; } /* bright green */
+  .monitor-therapy { background-color: #fde68a; border-color: #b45309; } /* yellow */
+  .avoid-combo { background-color: #fca5a5; border-color: #b91c1c; } /* red */
+  .no-action { background-color: #93c5fd; border-color: #2563eb; } /* blue */
+  .consider-modification { background-color: #c4b5fd; border-color: #7c3aed; } /* purple */
+
+  /* Interaction table */
+  table.interaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #cbd5e1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgb(96 165 250 / 0.3);
+  }
+  table.interaction-table thead {
+    background: #1e293b;
+    color: #93c5fd;
+  }
+  table.interaction-table th, table.interaction-table td {
+    border: none;
+    padding: 14px 20px;
+    text-align: left;
+  }
+  table.interaction-table tbody tr {
+    border-bottom: 1px solid #334155;
+    transition: background-color 0.3s ease;
+  }
+  table.interaction-table tbody tr:last-child {
+    border-bottom: none;
+  }
+  table.interaction-table tbody tr:hover,
+  table.interaction-table tbody tr:focus-within {
+    background-color: #2563eb;
+    color: #e0e7ff;
+    outline: none;
+  }
+
+  /* Footer */
+  footer {
+    background: #1e293b;
+    color: #a5b4fc;
+    text-align: center;
+    padding: 36px 24px;
+    font-size: 0.9rem;
+    user-select: none;
+    margin-top: 64px;
+    box-shadow: inset 0 1px 0 #3b82f6;
+  }
+  footer a {
+    color: #82c7ff;
+  }
+  footer a:hover, footer a:focus {
+    color: #38bdf8;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .container {
+      padding: 40px 20px 80px;
+      max-width: 720px;
+    }
+    section {
+      padding: 28px 32px;
+      margin-top: 40px;
+    }
+    header h1 {
+      font-size: 2rem;
+    }
+    .image-gallery {
+      gap: 20px;
+    }
+  }
+  @media (max-width: 640px) {
+    header {
+      padding: 24px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    header img {
+      height: 36px;
+      border-radius: 6px;
+      box-shadow: 0 3px 12px rgb(59 130 246 / 0.7);
+    }
+    header h1 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+    .container {
+      padding: 32px 16px 64px;
+      max-width: 100%;
+    }
+    section {
+      padding: 24px 20px;
+      margin-top: 32px;
+      border-radius: 10px;
+    }
+    .interaction-legend {
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+    .legend-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+    .image-gallery {
+      justify-content: center;
+      gap: 18px;
+    }
+    .image-card {
+      max-width: 280px;
+      padding: 18px 12px 28px;
+    }
+  }
+</style>
+</head>
+<body>
+<header role="banner">
+  <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/785c2a86-2d40-48ff-acdd-4b18da993ca1.png" alt="Insulin vial with dark blue modern pharmaceutical label" />
+  <h1>Regular Insulin: </h1>
+</header>
+<main class="container" role="main" aria-label="Regular Insulin detailed information">
+  <section aria-labelledby="intro-title" tabindex="0">
+    <h2 id="intro-title">Introduction </h2>
+    <p><strong>Regular insulin</strong> is a short-acting synthetic human insulin used primarily in the management of diabetes mellitus and hyperglycemia of various etiologies. It mimics endogenous insulin’s physiological effects, mainly lowering serum glucose via stimulating peripheral glucose uptake and inhibiting hepatic glucose production.</p>
+    <p>This medication is available as:</p>
+    <ul>
+      <li>An injectable solution</li>
+      <li>An intravenous (IV) solution</li>
+      <li>An inhalable powder</li>
+    </ul>
+    <p><strong>FDA Approval:</strong> Humulin, the first biosynthetic human insulin, was approved on October 28, 1982, after five months of review.</p>
+    <div class="formula" aria-label="Protein chemical formula and molecular weight">
+      C<sub>257</sub>H<sub>383</sub>N<sub>65</sub>O<sub>77</sub>S<sub>6</sub> &mdash; Molecular Weight: 5808 Da
+    </div>
+  </section>
+
+  <section aria-labelledby="images-title" tabindex="0">
+    <h2 id="images-title">Insulin Vials and Injection Images</h2>
+    <div class="image-gallery" role="list">
+      <figure class="image-card" role="listitem" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9fb48dec-e6c2-4e0d-843b-256a47d8d61d.png" alt="Placeholder image of Humulin R vial pharmaceutical packaging shown in close-up" />
+        <figcaption>Humulin R Vial</figcaption>
+      </figure>
+      <figure class="image-card" role="listitem" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f422f60-06f9-4d8d-8277-f0ed1eda3a3a.png" alt="Placeholder image of syringe with insulin injection suitable for diabetes treatment" />
+        <figcaption>Insulin Injection Syringe</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="indications-title" tabindex="0">
+    <h2 id="indications-title">Indications</h2>
+    <p><strong>Labeled Uses:</strong> Mainstay therapy for diabetes mellitus type 1 and some cases of type 2 to improve glycemic control.</p>
+    <p><strong>Off-label Uses Include:</strong></p>
+    <ul>
+      <li>Hormonal resuscitation in cadaveric organ recovery</li>
+      <li>Treatment of calcium channel blocker and beta-blocker toxicity</li>
+      <li>Management of severe hyperglycemia and diabetic ketoacidosis (continuous IV infusion dosing guidance included)</li>
+      <li>Refractory gestational diabetes mellitus</li>
+      <li>Management of hyperkalemia (IV insulin with dextrose)</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="pharmacology-title" tabindex="0">
+    <h2 id="pharmacology-title">Pharmacology</h2>
+    <h3>Mechanism of Action</h3>
+    <p>Stimulates peripheral glucose uptake (skeletal muscle and fat), inhibits hepatic glucose production, lipolysis, and proteolysis, and enhances protein synthesis targeting skeletal muscle, liver, and adipose tissue.</p>
+
+    <h3>Pharmacokinetics</h3>
+    <ul>
+      <li><strong>Absorption:</strong> Bioavailability 55-77% (subcutaneous), onset 0.5 hr, peak 0.8-2 hr, duration 4–12 hrs (U-100), up to 24 hrs (U-500)</li>
+      <li><strong>Distribution Volume:</strong> 0.26-0.36 L/kg</li>
+      <li><strong>Metabolism:</strong> Liver (&gt;50%), kidney (~30%), adipose tissue/muscle (~20%)</li>
+      <li><strong>Excretion:</strong> Urine</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="clinical-use-title" tabindex="0">
+    <h2 id="clinical-use-title">Clinical Use &amp; Administration</h2>
+    <p><strong>Why mostly used in Type 1 Diabetes?</strong></p>
+    <p>Type 1 Diabetes is caused by autoimmune destruction of pancreatic beta cells, resulting in insulin deficiency. People with T1D rely primarily on exogenous insulin to manage blood glucose levels.</p>
+    <p><strong>Administration Guidelines:</strong></p>
+    <ol>
+      <li><strong>Preparation:</strong> Ensure insulin solution is clear and colorless. Do not use if cloudy or viscous.</li>
+      <li><strong>Injection:</strong> Administer subcutaneously at a 90° angle using a suitable insulin syringe or pen.</li>
+      <li><strong>Intravenous Use:</strong> Use U-100 insulin only. Monitor serum potassium and blood glucose closely during infusion.</li>
+      <li><strong>Dosing:</strong> Follow prescribed dosage exactly; avoid dosing without meals to prevent hypoglycemia.</li>
+      <li><strong>Storage of opened vials and pens:</strong> Follow temperature guidelines to maintain efficacy.</li>
+      <li><strong>Disposal:</strong> Dispose of needles and pens safely to avoid injury or contamination.</li>
+    </ol>
+    <p><strong>Additional Administration Steps (Humulin R):</strong></p>
+    <ol>
+      <li>Choose appropriate syringe or insulin pen compatible with Humulin R.</li>
+      <li>Inspect the vial or pen for clarity and expiration date; do not use if cloudy or past expiry.</li>
+      <li>Wash hands and clean injection site with alcohol swab.</li>
+      <li>If using a vial, roll it gently between palms to mix insulin; do not shake.</li>
+      <li>Draw up the correct dose by inserting needle into vial and pulling plunger slowly.</li>
+      <li>Remove air bubbles from syringe by flicking and pushing air out.</li>
+      <li>Pinch skin to create a fold and inject subcutaneously at 90-degree angle.</li>
+      <li>Hold needle in place for 5-10 seconds before withdrawal to ensure full dose delivery.</li>
+      <li>Dispose of syringe or pen needle in proper sharps container.</li>
+      <li>Rotate injection sites to avoid lipodystrophy.</li>
+      <li>Monitor blood glucose regularly per medical advice.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="storage-title" tabindex="0">
+    <h2 id="storage-title">Storage Instructions</h2>
+    <h3>Humulin R U-100</h3>
+    <ul>
+      <li>Unopened vials: Refrigerate 2-8°C (36-46°F) until expiration or store room temperature max 31 days; Do not freeze</li>
+      <li>Opened vials: Refrigerate or room temperature ≤30°C (86°F) for up to 31 days; do not freeze</li>
+    </ul>
+    <h3>Humulin R U-500</h3>
+    <ul>
+      <li>Unopened vials: Refrigerate 2-8°C until expiration; can store at room temperature &lt;30°C (86°F) for 40 days; do not shake vial</li>
+      <li>Opened vials: Refrigerate or room temperature ≤30°C, discard after 40 days</li>
+    </ul>
+    <h3>Humulin R KwikPen</h3>
+    <ul>
+      <li>Unopened pens: Refrigerate 2-8°C until expiration; or keep room temperature ≤30°C for max 28 days; protect from heat and light; do not freeze</li>
+      <li>Used pens: Store room temperature ≤30°C, discard after 28 days; do not refrigerate</li>
+    </ul>
+    <h3>Novolin R Vials</h3>
+    <ul>
+      <li>Unopened: Refrigerate 2-8°C until expiration or room temperature ≤25°C (77°F) max 42 days; do not freeze</li>
+      <li>Opened: Store at room temperature ≤25°C; refrigeration not recommended</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="pregnancy-title" tabindex="0">
+    <h2 id="pregnancy-title">Pregnancy &amp; Lactation Considerations</h2>
+    <p><strong>Pregnancy Category B</strong>: No established association with birth defects or adverse outcomes. Poorly controlled diabetes in pregnancy poses risks to both mother and fetus.</p>
+    <p>Lactation studies show exogenous insulin transfers into breast milk but no adverse effects reported in infants.</p>
+  </section>
+
+  <section aria-labelledby="side-effects-title" tabindex="0">
+    <h2 id="side-effects-title">Side Effects &amp; Adverse Reactions</h2>
+    <ul>
+      <li>Hypersensitivity/allergic reactions (redness, swelling, rash, breathing difficulty)</li>
+      <li>Swelling (edema), weight gain</li>
+      <li>Injection site reactions (pruritus, erythema, skin thickening or hollowing)</li>
+      <li>Hypokalemia (potassium shift causing cramps, arrhythmias)</li>
+      <li>Hypoglycemia (life-threatening if improper dosing)</li>
+      <li>Cardiovascular: peripheral edema</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="contraindications-title" tabindex="0">
+    <h2 id="contraindications-title">Contraindications &amp; Drug Interactions</h2>
+    <p><strong>Contraindications:</strong> Known hypersensitivity to insulin.</p>
+    <p><strong>Drug Interactions Summary:</strong> The following table summarizes interaction types between regular insulin and various drugs or agents as per Lexidrug interaction classification:</p>
+
+    <div class="interaction-legend" aria-label="Legend for drug interaction categories">
+      <div class="legend-item"><div class="legend-box no-interaction" aria-hidden="true"></div> No known interaction</div>
+      <div class="legend-item"><div class="legend-box monitor-therapy" aria-hidden="true"></div> Monitor therapy</div>
+      <div class="legend-item"><div class="legend-box avoid-combo" aria-hidden="true"></div> Avoid combination</div>
+      <div class="legend-item"><div class="legend-box no-action" aria-hidden="true"></div> No action needed</div>
+      <div class="legend-item"><div class="legend-box consider-modification" aria-hidden="true"></div> Consider therapy modification</div>
+    </div>
+    
+    <table class="interaction-table" aria-describedby="interaction-desc" role="grid" tabindex="0">
+      <caption id="interaction-desc" class="sr-only">Drug interactions for Regular Insulin</caption>
+      <thead>
+        <tr>
+          <th scope="col">Drug or Agent</th>
+          <th scope="col">Interaction Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Macimorelin</td><td><span class="legend-box avoid-combo" aria-hidden="true"></span> Avoid combination</td></tr>
+        <tr><td>Rosiglitazone</td><td><span class="legend-box monitor-therapy" aria-hidden="true"></span> Monitor therapy</td></tr>
+        <tr><td>Alpha-Glucosidase Inhibitors</td><td><span class="legend-box no-action" aria-hidden="true"></span> No action needed</td></tr>
+        <tr><td>Dipeptidyl Peptidase-IV Inhibitors</td><td><span class="legend-box no-interaction" aria-hidden="true"></span> No known interaction</td></tr>
+        <tr><td>Glucagon-Like Peptide-1 Agonists</td><td><span class="legend-box monitor-therapy" aria-hidden="true"></span> Monitor therapy</td></tr>
+        <tr><td>Liraglutide</td><td><span class="legend-box monitor-therapy" aria-hidden="true"></span> Monitor therapy</td></tr>
+        <tr><td>Metreleptin</td><td><span class="legend-box consider-modification" aria-hidden="true"></span> Consider therapy modification</td></tr>
+        <tr><td>Pioglitazone</td><td><span class="legend-box monitor-therapy" aria-hidden="true"></span> Monitor therapy</td></tr>
+        <tr><td>Pramlintide</td><td><span class="legend-box no-action" aria-hidden="true"></span> No action needed</td></tr>
+        <tr><td>Sodium-Glucose Cotransporter 2 (SGLT2) Inhibitors</td><td><span class="legend-box avoid-combo" aria-hidden="true"></span> Avoid combination</td></tr>
+        <tr><td>Alpha-Lipoic Acid</td><td><span class="legend-box no-action" aria-hidden="true"></span> No action needed</td></tr>
+        <tr><td>Antidiabetic Agents</td><td><span class="legend-box monitor-therapy" aria-hidden="true"></span> Monitor therapy</td></tr>
+        <tr><td>Androgens</td><td><span class="legend-box avoid-combo" aria-hidden="true"></span> Avoid combination</td></tr>
+        <tr><td>Beta-Blockers (Beta1 Selective)</td><td><span class="legend-box monitor-therapy" aria-hidden="true"></span> Monitor therapy</td></tr>
+      </tbody>
+    </table>
+    <p>Note: Clinicians should use judgment based on up-to-date information and individual patient contexts when managing these interactions.</p>
+  </section>
+
+  <section aria-labelledby="toxicity-title" tabindex="0">
+    <h2 id="toxicity-title">Toxicity &amp; Antidote</h2>
+    <p>Insulin toxicity symptoms relate to hypoglycemia and electrolyte disturbances, possibly causing seizures, coma, hypotension, bradycardia.</p>
+    <p><strong>Antidote:</strong> Dextrose infusion (400-600 mg/kg/hr) and glucagon emergency kit with dextrose for severe toxicity.</p>
+  </section>
+
+  <section aria-labelledby="pen-device-title" tabindex="0">
+    <h2 id="pen-device-title">Pen Device</h2>
+    <p><strong>Humulin R KwikPen:</strong> First FDA-approved prefilled pen device for U-500 strength insulin (500 units/mL) for patients needing &gt;200 units/day.</p>
+    <p><strong>Additional Pen Device Information:</strong></p>
+    <ol>
+      <li>Humulin R KwikPen allows accurate dosing with easy-to-read increments.</li>
+      <li>Prefilled and disposable pen designed for patient convenience.</li>
+      <li>Features a robust and ergonomic design for easy handling.</li>
+      <li>Requires no mixing or reconstitution prior to use.</li>
+      <li>Has a maximum dose per injection of 300 units.</li>
+      <li>Should be stored between 2–8°C before first use and can be kept at room temperature (below 30°C) for 28 days after first use.</li>
+      <li>Proper disposal of the pen and needles is mandatory to prevent injury.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="inhalation-insulin-title" tabindex="0">
+    <h2 id="inhalation-insulin-title">Inhalation Insulin</h2>
+    <p><strong>Afrezza:</strong> Afrezza is an FDA-approved inhaled short-acting insulin powder delivered via a small inhaler device. It is prescribed for adults to improve glycemic control in diabetes mellitus.</p>
+    <p>Warning: Afrezza should not be used in patients with chronic lung disease such as asthma or COPD due to the risk of acute bronchospasm.</p>
+    <p>Typical dosing duration is 15 minutes before meals. Patients require pulmonary function testing prior to initiation and periodically during therapy.</p>
+    <p>Storage: Store unopened cartridges refrigerated; opened packs can be kept at room temperature for up to 10 days.</p>
+    <div class="image-section" role="img" aria-label="Photo of Afrezza inhaler device and packaging">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/da53f6ca-d856-49a9-b6b7-d17db49b5dd7.png" alt="Afrezza inhaler device and packaging used for inhaled insulin therapy" />
+      <figcaption>Afrezza inhaler device and packaging used for inhaled short-acting insulin delivery.</figcaption>
+    </div>
+  </section>
+
+  <section aria-labelledby="references-title" tabindex="0">
+    <h2 id="references-title">References</h2>
+    <ul>
+      <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK553094/" target="_blank" rel="noopener noreferrer">NCBI Bookshelf - Insulin Overview</a></li>
+      <li><a href="https://www.medscape.com" target="_blank" rel="noopener noreferrer">Medscape.com</a></li>
+      <li><a href="https://www.drugbank.ca" target="_blank" rel="noopener noreferrer">Drug Bank</a></li>
+      <li><a href="https://www.drugs.com" target="_blank" rel="noopener noreferrer">Drugs.com</a></li>
+      <li><a href="https://www.lexicondrugs.com/" target="_blank" rel="noopener noreferrer">Lexicom.Drugs - Drug Interactions</a></li>
+      <li><a href="https://www.fda.gov" target="_blank" rel="noopener noreferrer">FDA Articles</a></li>
+    </ul>
+  </section>
+</main>
+<footer>
+  &copy; 2025 Regular Insulin Reference | 
+</footer>
+</body>
+</html>
+
